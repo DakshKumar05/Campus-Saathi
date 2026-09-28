@@ -46,12 +46,12 @@ Q044,How do I submit extenuating circumstances?,standard,advising,advising,yes,E
 Q045,I want to change my course to data science,standard,advising,advising,yes,Extenuating circumstances,Extenuating circumstances,yes,Low,Medium,no,change my course
 Q046,I'm thinking about taking a year off my studies,hard,advising,none,no,Extenuating circumstances,none,no,Medium,none,no,
 Q047,When is the resit for the maths module I failed?,standard,advising,advising,yes,Extenuating circumstances,Extenuating circumstances,yes,Medium,Medium,yes,resit; failed
-Q048,I need a council tax exemption letter,standard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,council tax
+Q048,I need a bank KYC address proof letter,standard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,kyc; address proof
 Q049,Can I get an official transcript for my job application?,standard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,transcript
 Q050,My enrolment still shows as incomplete,standard,registry,registry,yes,Letters and records,Letters and records,yes,Medium,Low,no,enrolment; enrolment
 Q051,I lost my student ID card,standard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,id card
 Q052,My name is spelled wrong on my student record,standard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,student record
-Q053,I need a bonafide certificate for my bank account,hard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,certificate
+Q053,I need a bonafide certificate for my bank account,hard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Medium,no,bonafide
 Q054,Where do I get proof of study for my visa renewal?,standard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,proof of study
 Q055,When is my graduation ceremony and how do I register?,standard,registry,registry,yes,Letters and records,Letters and records,yes,Low,Low,yes,graduation
 Q056,I paid my tuition fee but it still shows as unpaid,standard,finance,finance,yes,Fees and payments,Fees and payments,yes,Medium,Medium,yes,tuition; fee
@@ -112,7 +112,7 @@ Q110,I have a hearing impairment and can't follow recorded lectures,standard,dis
 Q111,I have a chronic condition that affects my attendance,standard,disability,disability,yes,Adjustments and access,Adjustments and access,yes,Medium,Medium,yes,chronic; condition
 Q112,I'm autistic and find the exam hall very overwhelming,hard,disability,counselling,no,Adjustments and access,Exam stress,no,Medium,Medium,yes,exam; overwhelming
 Q113,My visa expires before my course ends,standard,international,international,yes,Visa and immigration,Visa and immigration,yes,High,Medium,no,visa
-Q114,I need a CAS letter for my visa extension,standard,international,international,yes,Visa and immigration,Visa and immigration,yes,Medium,Medium,yes,visa; cas
+Q114,I need my FRRO registration certificate for my visa extension,standard,international,international,yes,Visa and immigration,Visa and immigration,yes,Medium,Medium,yes,visa; frro
 Q115,I got an attendance warning email and I'm worried about my visa,standard,international,international,yes,Visa and immigration,Visa and immigration,yes,High,Medium,no,visa; attendance warning
 Q116,Do I need a letter to travel home during the break?,standard,international,none,no,Visa and immigration,none,no,Low,none,no,
 Q117,My eVisa shows the wrong details,standard,international,international,yes,Visa and immigration,Visa and immigration,yes,Medium,Medium,yes,evisa

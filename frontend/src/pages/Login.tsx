@@ -9,8 +9,8 @@ import { errorMessage } from '../lib/api';
 
 const DEMO_ROLES: { role: Role; label: string; icon: typeof Users; who: string }[] = [
   { role: 'student', label: 'Student', icon: GraduationCap, who: 'Abhilash Reddy' },
-  { role: 'staff', label: 'Staff', icon: Users, who: 'Sarah Mitchell' },
-  { role: 'admin', label: 'Admin', icon: ShieldCheck, who: 'James Okafor' },
+  { role: 'staff', label: 'Staff', icon: Users, who: 'Meera Iyer' },
+  { role: 'admin', label: 'Admin', icon: ShieldCheck, who: 'Vikram Nair' },
 ];
 
 export default function Login() {
@@ -40,7 +40,7 @@ export default function Login() {
     const next: typeof errors = {};
     const em = email.trim();
     if (!em) next.email = 'Enter your university email address.';
-    else if (!/^[^\s@]+@([a-z]+\.)?northbridge\.ac\.uk$/i.test(em)) next.email = 'Use your Northbridge University email address, for example a.reddy@student.northbridge.ac.uk.';
+    else if (!/^[^\s@]+@([a-z]+\.)?vindhya\.ac\.in$/i.test(em)) next.email = 'Use your Vindhya University email address, for example a.reddy@student.vindhya.ac.in.';
     if (!password) next.password = 'Enter your password.';
     setErrors(next);
     if (next.email || next.password) return;
@@ -79,7 +79,7 @@ export default function Login() {
             <li><strong>Routed to the right team</strong><span>Describe your situation in your own words</span></li>
             <li><strong>Track every request</strong><span>See updates and reply in one place</span></li>
           </ul>
-          <div className="lb-foot">Northbridge University · Student Services</div>
+          <div className="lb-foot">Vindhya University · Student Services</div>
         </div>
       </aside>
 
@@ -101,7 +101,7 @@ export default function Login() {
               <label className="label" htmlFor="email">University Email</label>
               <input
                 id="email" type="email" autoComplete="username" className={`input${errors.email ? ' invalid' : ''}`}
-                placeholder="name@student.northbridge.ac.uk" value={email}
+                placeholder="name@student.vindhya.ac.in" value={email}
                 onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors({ ...errors, email: undefined }); }}
                 aria-invalid={!!errors.email} aria-describedby={errors.email ? 'email-err' : undefined}
               />
@@ -158,7 +158,7 @@ export default function Login() {
               ))}
             </div>
             <p className="help" style={{ marginTop: 10 }}>
-              Signs in with sample data. Every sample account, such as <span className="mono">a.reddy@student.northbridge.ac.uk</span>, uses the password <span className="mono">CampusSaathi2026</span>.
+              Signs in with sample data. Every sample account, such as <span className="mono">a.reddy@student.vindhya.ac.in</span>, uses the password <span className="mono">CampusSaathi2026</span>.
             </p>
           </div>
         </div>
@@ -170,9 +170,9 @@ export default function Login() {
           onClose={() => setForgotOpen(false)}
           footer={<button className="btn btn-primary" onClick={() => setForgotOpen(false)}>Got it</button>}
         >
-          <p>Campus Saathi uses your Northbridge University account, so your password is the same one you use for Moodle and email.</p>
+          <p>Campus Saathi uses your Vindhya University account, so your password is the same one you use for Moodle and email.</p>
           <p style={{ marginTop: 10 }}>
-            To reset it, go to <strong>account.northbridge.ac.uk</strong> or contact the IT Service Desk on <span className="mono">01632 960 270</span>.
+            To reset it, go to <strong>account.vindhya.ac.in</strong> or contact the IT Service Desk on <span className="mono">+91 80 4021 1207</span>.
           </p>
         </Dialog>
       )}

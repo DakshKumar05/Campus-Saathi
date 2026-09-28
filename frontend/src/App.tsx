@@ -14,6 +14,8 @@ import RequestDetail from './pages/student/RequestDetail';
 import { ServiceDetail, Services } from './pages/student/Services';
 import Emergency from './pages/student/Emergency';
 import StaffCases from './pages/staff/StaffCases';
+import StaffQueues from './pages/staff/StaffQueues';
+import Queues from './pages/student/Queues';
 import CaseDetail from './pages/shared/CaseDetail';
 import Profile from './pages/shared/Profile';
 import Overview from './pages/admin/Overview';
@@ -56,6 +58,7 @@ export default function App() {
                 <Route path="requests/:id" element={<RequestDetail />} />
                 <Route path="services" element={<Services />} />
                 <Route path="services/:id" element={<ServiceDetail />} />
+                <Route path="queues" element={<Queues />} />
                 <Route path="emergency" element={<Emergency />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="*" element={<NotFound />} />
@@ -64,6 +67,7 @@ export default function App() {
               <Route path="/staff" element={<RequireRole role="staff"><AppShell role="staff" /></RequireRole>}>
                 <Route index element={<StaffCases scope="mine" />} />
                 <Route path="queue" element={<StaffCases scope="queue" />} />
+                <Route path="queues" element={<StaffQueues />} />
                 <Route path="cases/:id" element={<CaseDetail role="staff" />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="*" element={<NotFound />} />
@@ -78,6 +82,7 @@ export default function App() {
                 <Route path="departments" element={<Departments />} />
                 <Route path="departments/:id" element={<DepartmentDetail />} />
                 <Route path="reports" element={<Reports />} />
+                <Route path="queues" element={<StaffQueues />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="*" element={<NotFound />} />
               </Route>

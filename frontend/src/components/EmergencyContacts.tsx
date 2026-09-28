@@ -1,11 +1,11 @@
 import { Phone, ShieldAlert } from 'lucide-react';
 
 export const EMERGENCY_CONTACTS = [
-  { name: 'Emergency services', detail: 'Police, ambulance or fire — if someone is in immediate danger', phone: '999' },
-  { name: 'Campus Security (24 hours)', detail: 'Incidents on campus or in university halls', phone: '01632 960 444' },
-  { name: 'Samaritans (24 hours)', detail: 'Free, confidential support if you’re struggling to cope', phone: '116 123' },
-  { name: 'NHS 111', detail: 'Urgent medical advice when it isn’t an emergency', phone: '111' },
-  { name: 'Out-of-hours Wellbeing Line', detail: 'Evenings, weekends and bank holidays', phone: '0800 048 6214' },
+  { name: 'Emergency services', detail: 'Police, ambulance or fire — if someone is in immediate danger', phone: '112' },
+  { name: 'Campus Security (24 hours)', detail: 'Incidents on campus or in university hostels', phone: '+91 80 4021 1212' },
+  { name: 'KIRAN Mental Health Helpline (24 hours)', detail: 'Free, confidential support if you’re struggling to cope', phone: '1800-599-0019' },
+  { name: 'Ambulance', detail: 'Urgent medical advice when it isn’t police or fire', phone: '108' },
+  { name: 'Out-of-hours Wellbeing Line', detail: 'Evenings, weekends and public holidays', phone: '+91 80 4021 1200' },
 ];
 
 export function EmergencyContacts({ compact }: { compact?: boolean }) {
@@ -15,8 +15,8 @@ export function EmergencyContacts({ compact }: { compact?: boolean }) {
       {list.map((c) => (
         <li key={c.name}>
           <a className="list-link" href={`tel:${c.phone.replace(/\s/g, '')}`}>
-            <span className={`icon-box${c.phone === '999' ? ' danger' : ''}`}>
-              {c.phone === '999' ? <ShieldAlert size={18} /> : <Phone size={18} />}
+            <span className={`icon-box${c.phone === '112' ? ' danger' : ''}`}>
+              {c.phone === '112' ? <ShieldAlert size={18} /> : <Phone size={18} />}
             </span>
             <span className="ll-main">
               <span className="ll-title" style={{ display: 'block' }}>{c.name}</span>

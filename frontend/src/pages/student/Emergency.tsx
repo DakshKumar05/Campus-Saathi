@@ -14,7 +14,7 @@ export default function Emergency() {
         </div>
         <div className="alert danger" role="alert">
           <AlertTriangle size={16} />
-          <span><strong>If you or someone else is in immediate danger, call 999.</strong> On campus, also call Security on 01632 960 444 so they can guide emergency services to you.</span>
+          <span><strong>If you or someone else is in immediate danger, call 112.</strong> On campus, also call Security on +91 80 4021 1212 so they can guide emergency services to you.</span>
         </div>
         <section className="panel">
           <div className="panel-head"><h2>24-hour contacts</h2></div>

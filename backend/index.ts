@@ -5,6 +5,7 @@ import path from 'node:path';
 import { DB_PATH, DEMO_PASSWORD } from './db';
 import { authRouter, loadUser, pruneSessions } from './auth';
 import { casesRouter } from './cases';
+import { queuesRouter } from './queues';
 import { errorMiddleware } from './http';
 import { aiConfigured } from '../ml/ai-triage';
 
@@ -38,6 +39,7 @@ app.use('/api', loadUser);
 app.get('/api/health', (_req, res) => { res.json({ ok: true }); });
 app.use('/api/auth', authRouter);
 app.use('/api', casesRouter);
+app.use('/api', queuesRouter);
 app.use('/api', (_req, res) => { res.status(404).json({ error: 'Not found.' }); });
 app.use(errorMiddleware);
 

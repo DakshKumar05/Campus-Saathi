@@ -23,6 +23,7 @@
     "../frontend/src/data/types.ts",
     "../frontend/src/data/directory.ts",
     "../frontend/src/data/seed.ts",
-    "../frontend/src/data/procedures.ts"
+    "../frontend/src/data/procedures.ts",
+    "../frontend/src/data/physicalProcedures.ts"
   ]
 }

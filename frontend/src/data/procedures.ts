@@ -1,9 +1,9 @@
-
-
+import { PHYSICAL_PROCEDURES } from './physicalProcedures';
 export interface ProcedureStep {
   who: string;      // person or office to visit
   where: string;    // room / building
   what: string;     // what happens at this step
+  queueId?: string; // optional: campus service queue a student can join for this counter
 }
 
 export interface Procedure {
@@ -16,6 +16,7 @@ export interface Procedure {
   documents: string[];  // what to bring
   steps: ProcedureStep[];
   turnaround: string;
+  collect?: { title: string; note: string }; // optional final "collect" step shown after the route
 }
 
 export const PROCEDURES: Procedure[] = [
@@ -38,7 +39,9 @@ export const PROCEDURES: Procedure[] = [
       { who: 'Placement Cell', where: 'Room SH-205, Student Hub (2nd floor)', what: 'Submit the fully signed form with a copy of your offer letter.' },
     ],
     turnaround: 'within 7 working days',
+    collect: { title: 'Collect your NOC', note: 'the Placement Cell will email you.' },
   },
+  ...PHYSICAL_PROCEDURES,
 ];
 
 export const procedureById = (id: string) => PROCEDURES.find((p) => p.id === id);

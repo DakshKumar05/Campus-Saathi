@@ -29,7 +29,7 @@ export interface Student {
   faculty: string;
   year: string;
   mode: 'Full-time' | 'Part-time';
-  feeStatus: 'Home' | 'International';
+  feeStatus: 'Domestic' | 'International';
   tutor: string;
 }
 
@@ -86,4 +86,66 @@ export interface Case {
   triage: Triage;
   activity: ActivityEntry[];
   resolution?: { at: string; by: string; text: string };
+}
+
+/* ---------- Campus Queue Manager ---------- */
+
+export type QueueTokenStatus = 'waiting' | 'in_progress' | 'completed' | 'cancelled';
+
+export interface QueueSummary {
+  id: string;
+  name: string;
+  serviceType: 'certificates' | 'helpdesk' | 'lab_booking';
+  departmentId: string;
+  prefix: string;
+  location: string;
+  description: string;
+  isPaused: boolean;
+  waiting: number;
+  nowServing: string | null;
+  estimatedWaitMinutes: number; // for someone joining now
+}
+
+export interface StudentToken {
+  id: string;
+  queueId: string;
+  queueName: string;
+  location: string;
+  tokenNumber: string;
+  purpose: string | null;
+  status: QueueTokenStatus;
+  position: number | null;
+  createdAt: string;
+  calledAt: string | null;
+  isPaused: boolean;
+  estimatedWaitMinutes: number;
+  nowServing: string | null;
+}
+
+export interface QueueStats {
+  queueId: string;
+  servedToday: number;
+  waiting: number;
+  inProgress: number;
+  cancelledToday: number;
+  avgWaitMinutes: number | null;
+  avgHandlingMinutes: number | null;
+}
+
+export interface QueueEntry {
+  id: string;
+  tokenNumber: string;
+  studentName: string;
+  studentNumber: string;
+  purpose: string | null;
+  position: number | null;
+  createdAt: string;
+  calledAt: string | null;
+}
+
+export interface StaffQueueView {
+  queue: QueueSummary;
+  serving: QueueEntry | null;
+  waiting: QueueEntry[];
+  stats: QueueStats;
 }

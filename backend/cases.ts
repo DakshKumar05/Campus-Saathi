@@ -4,7 +4,7 @@ import { PRIORITIES, STATUSES, type ActivityEntry, type Case, type Priority, typ
 import { TRIAGE_ACTOR, caseId } from '../frontend/src/data/seed';
 import { triage } from '../ml/triage';
 import { analyse, cachedTriage } from '../ml/ai-triage';
-import { db, insertActivity, insertCase, seedCases, tx } from './db';
+import { db, insertActivity, insertCase, seedCases, seedQueues, tx } from './db';
 import { requireRole } from './auth';
 import { HttpError, handler, oneOf, str } from './http';
 
@@ -238,6 +238,7 @@ casesRouter.post('/cases/:id/reopen', requireRole('staff', 'admin'), handler((re
 
 casesRouter.post('/admin/reset-demo', requireRole('admin'), handler((_req, res) => {
   seedCases();
+  seedQueues();
   res.json({ ok: true });
 }));
 

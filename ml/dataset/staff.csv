@@ -1,25 +1,25 @@
 id,name,title,department_id,department,email
-sf-price,Owen Price,Academic Adviser,advising,Academic Advising,owen.price@northbridge.ac.uk
-sf-moore,Rachel Moore,Academic Adviser,advising,Academic Advising,rachel.moore@northbridge.ac.uk
-sf-eze,Amara Eze,Accommodation Officer,accommodation,Accommodation & Residential Life,amara.eze@northbridge.ac.uk
-sf-whitfield,Joe Whitfield,Residential Life Coordinator,accommodation,Accommodation & Residential Life,joe.whitfield@northbridge.ac.uk
-sf-morton,Dave Morton,Security Supervisor,security,Campus Security & Safety,dave.morton@northbridge.ac.uk
-sf-shaw,Kelly Shaw,Security Officer,security,Campus Security & Safety,kelly.shaw@northbridge.ac.uk
-sf-parker,Hollie Parker,Careers Consultant,careers,Careers & Employability,hollie.parker@northbridge.ac.uk
-sf-osei,Victor Osei,Placements Coordinator,careers,Careers & Employability,victor.osei@northbridge.ac.uk
-sf-ashworth,Dr Claire Ashworth,Disability Adviser,disability,Disability & Accessibility Services,claire.ashworth@northbridge.ac.uk
-sf-rivera,Sam Rivera,Inclusion Adviser,disability,Disability & Accessibility Services,sam.rivera@northbridge.ac.uk
-sf-brooks,Natalie Brooks,Funding Adviser,aid,Financial Aid & Scholarships,natalie.brooks@northbridge.ac.uk
-sf-lang,Peter Lang,Scholarships Officer,aid,Financial Aid & Scholarships,peter.lang@northbridge.ac.uk
-sf-carlisle,Ben Carlisle,Service Desk Analyst,it,IT Service Desk,ben.carlisle@northbridge.ac.uk
-sf-petrova,Nadia Petrova,Service Desk Analyst,it,IT Service Desk,nadia.petrova@northbridge.ac.uk
-sf-ellis,George Ellis,Immigration Compliance Officer,international,International Student Office,george.ellis@northbridge.ac.uk
-sf-lin,Mei Lin,International Student Adviser,international,International Student Office,mei.lin@northbridge.ac.uk
-sf-grant,Fiona Grant,Library Services Assistant,library,Library Services,fiona.grant@northbridge.ac.uk
-sf-dunn,Harry Dunn,Academic Liaison Librarian,library,Library Services,harry.dunn@northbridge.ac.uk
-sf-hart,Linda Hart,Registry Officer,registry,Registry & Student Records,linda.hart@northbridge.ac.uk
-sf-webb,Marcus Webb,Records Assistant,registry,Registry & Student Records,marcus.webb@northbridge.ac.uk
-sf-adeyemi,Dr Tom Adeyemi,Mental Health Adviser,counselling,Student Counselling & Wellbeing,tom.adeyemi@northbridge.ac.uk
-sf-mitchell,Sarah Mitchell,Senior Counsellor,counselling,Student Counselling & Wellbeing,sarah.mitchell@northbridge.ac.uk
-sf-siddiqui,Imran Siddiqui,Credit Control Officer,finance,Student Finance & Fees,imran.siddiqui@northbridge.ac.uk
-sf-doyle,Karen Doyle,Student Finance Officer,finance,Student Finance & Fees,karen.doyle@northbridge.ac.uk
+sf-moore,Ananya Joshi,Academic Adviser,advising,Academic Advising,ananya.joshi@vindhya.ac.in
+sf-price,Karan Malhotra,Academic Adviser,advising,Academic Advising,karan.malhotra@vindhya.ac.in
+sf-eze,Farida Sheikh,Accommodation Officer,accommodation,Accommodation & Residential Life,farida.sheikh@vindhya.ac.in
+sf-whitfield,Ramesh Pillai,Residential Life Coordinator,accommodation,Accommodation & Residential Life,ramesh.pillai@vindhya.ac.in
+sf-shaw,Kiran Bhosale,Security Officer,security,Campus Security & Safety,kiran.bhosale@vindhya.ac.in
+sf-morton,Suresh Yadav,Security Supervisor,security,Campus Security & Safety,suresh.yadav@vindhya.ac.in
+sf-parker,Pooja Agarwal,Careers Consultant,careers,Careers & Employability,pooja.agarwal@vindhya.ac.in
+sf-osei,Vivek Nair,Placements Coordinator,careers,Careers & Employability,vivek.nair@vindhya.ac.in
+sf-ashworth,Dr Shalini Rao,Disability Adviser,disability,Disability & Accessibility Services,shalini.rao@vindhya.ac.in
+sf-rivera,Sameer Khan,Inclusion Adviser,disability,Disability & Accessibility Services,sameer.khan@vindhya.ac.in
+sf-lang,Arvind Menon,Scholarships Officer,aid,Financial Aid & Scholarships,arvind.menon@vindhya.ac.in
+sf-brooks,Neha Bhatt,Funding Adviser,aid,Financial Aid & Scholarships,neha.bhatt@vindhya.ac.in
+sf-petrova,Nandini Shetty,Service Desk Analyst,it,IT Service Desk,nandini.shetty@vindhya.ac.in
+sf-carlisle,Nikhil Verma,Service Desk Analyst,it,IT Service Desk,nikhil.verma@vindhya.ac.in
+sf-ellis,Anil Fernandes,FRRO Compliance Officer,international,International Student Office,anil.fernandes@vindhya.ac.in
+sf-lin,Ritu Chawla,International Student Adviser,international,International Student Office,ritu.chawla@vindhya.ac.in
+sf-dunn,Harish Dutta,Academic Liaison Librarian,library,Library Services,harish.dutta@vindhya.ac.in
+sf-grant,Lakshmi Subramaniam,Library Services Assistant,library,Library Services,lakshmi.subramaniam@vindhya.ac.in
+sf-webb,Deepak Chauhan,Records Assistant,registry,Registry & Student Records,deepak.chauhan@vindhya.ac.in
+sf-hart,Sunita Rawat,Registry Officer,registry,Registry & Student Records,sunita.rawat@vindhya.ac.in
+sf-adeyemi,Dr Rohan Kapoor,Mental Health Adviser,counselling,Student Counselling & Wellbeing,rohan.kapoor@vindhya.ac.in
+sf-mitchell,Meera Iyer,Senior Counsellor,counselling,Student Counselling & Wellbeing,meera.iyer@vindhya.ac.in
+sf-siddiqui,Imran Siddiqui,Credit Control Officer,finance,Student Finance & Fees,imran.siddiqui@vindhya.ac.in
+sf-doyle,Kavita Desai,Student Finance Officer,finance,Student Finance & Fees,kavita.desai@vindhya.ac.in

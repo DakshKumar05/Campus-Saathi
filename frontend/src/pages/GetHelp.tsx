@@ -19,7 +19,7 @@ export default function GetHelp() {
         <div className="container narrow stack">
           <Link to="/login" className="row small text-2"><ArrowLeft size={14} /> Back to sign in</Link>
           <div>
-            <h1>Getting support as a Northbridge student</h1>
+            <h1>Getting support as a Vindhya student</h1>
             <p className="text-2" style={{ marginTop: 6 }}>
               Campus Saathi is where you ask for help from any of the university’s student services. You don’t need an account to set up — sign in with the university email and password you already use for Moodle.
             </p>

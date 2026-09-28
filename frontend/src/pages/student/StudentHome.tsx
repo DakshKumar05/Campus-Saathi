@@ -7,6 +7,7 @@ import { departmentById, DEPARTMENTS } from '../../data/directory';
 import { greeting, updatedPhrase } from '../../lib/format';
 import { useTitle } from '../../lib/hooks';
 import { EmptyState, StatusBadge } from '../../components/ui';
+import { StudentQueues } from '../../components/StudentQueues';
 
 const EXAMPLES = [
   'I’ve been feeling overwhelmed with exams and can’t sleep properly…',
@@ -102,6 +103,14 @@ export default function StudentHome() {
             <span className="ql-text"><strong>Emergency Help</strong><span>24-hour contacts</span></span>
             <ChevronRight size={16} />
           </Link>
+        </div>
+
+        <div className="row" style={{ marginTop: 32, justifyContent: 'space-between' }}>
+          <h2 className="section-title" style={{ margin: 0 }}>Campus queues</h2>
+          <Link to="/student/queues" className="small">Open Campus Queues</Link>
+        </div>
+        <div style={{ marginTop: 12 }}>
+          <StudentQueues compact />
         </div>
 
         <section className="panel" style={{ marginTop: 32 }}>

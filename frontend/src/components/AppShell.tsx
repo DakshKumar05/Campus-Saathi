@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-do
 import { ChevronDown, LogOut, Menu, RotateCcw, User, X } from 'lucide-react';
 import { useAuth } from '../auth/AuthContext';
 import { useCases } from '../data/CaseStore';
+import { staffById } from '../data/directory';
 import type { Role } from '../data/types';
 import { initials } from '../lib/format';
 import { useToast } from './Toast';
@@ -16,11 +17,13 @@ const NAV: Record<Role, NavItem[]> = {
     { to: '/student', label: 'Home', end: true },
     { to: '/student/support', label: 'Find Support' },
     { to: '/student/requests', label: 'My Requests' },
+    { to: '/student/queues', label: 'Campus Queues' },
     { to: '/student/services', label: 'Services' },
   ],
   staff: [
     { to: '/staff', label: 'My Cases', end: true },
     { to: '/staff/queue', label: 'Team Queue' },
+    { to: '/staff/queues', label: 'Service Queues' },
   ],
   admin: [
     { to: '/admin', label: 'Overview', end: true },
@@ -28,6 +31,7 @@ const NAV: Record<Role, NavItem[]> = {
     { to: '/admin/students', label: 'Students' },
     { to: '/admin/departments', label: 'Departments' },
     { to: '/admin/reports', label: 'Reports' },
+    { to: '/admin/queues', label: 'Service Queues' },
   ],
 };
 
@@ -57,6 +61,10 @@ export function AppShell({ role }: { role: Role }) {
 
   if (!user) return null;
 
+  const me = role === 'staff' ? staffById(user.id) : undefined;
+  const teamQueueCount = me ? cases.filter((c) => c.departmentId === me.departmentId && !c.assigneeId && c.status !== 'Resolved').length : 0;
+  const badgeFor = (to: string) => (to === '/staff/queue' && teamQueueCount > 0 ? <span className="nav-badge">{teamQueueCount}</span> : null);
+
   const logout = () => {
     signOut().finally(() => navigate('/login', { replace: true, state: { signedOut: true } }));
   };
@@ -83,7 +91,9 @@ export function AppShell({ role }: { role: Role }) {
           <Wordmark to={`/${role}`} scope={SCOPE[role]} />
           <nav className="main-nav" aria-label="Main">
             {NAV[role].map((n) => (
-              <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => (isActive ? 'active' : '')}>{n.label}</NavLink>
+              <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => (isActive ? 'active' : '')}>
+                {n.label}{badgeFor(n.to)}
+              </NavLink>
             ))}
           </nav>
           <div className="header-right">
@@ -120,7 +130,9 @@ export function AppShell({ role }: { role: Role }) {
         <div className="mobile-nav" onClick={(e) => { if (e.target === e.currentTarget) setMobileOpen(false); }}>
           <nav aria-label="Mobile">
             {NAV[role].map((n) => (
-              <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => (isActive ? 'active' : '')}>{n.label}</NavLink>
+              <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => (isActive ? 'active' : '')}>
+                {n.label}{badgeFor(n.to)}
+              </NavLink>
             ))}
             <NavLink to={`/${role}/profile`}><User size={18} /> Profile</NavLink>
             <button className="m-link" onClick={logout}><LogOut size={18} /> Log out</button>
@@ -140,11 +152,11 @@ export function AppShell({ role }: { role: Role }) {
 
       <footer className="app-footer">
         <div className={`container`} style={dark ? { maxWidth: 1400 } : undefined}>
-          <span>© {new Date().getFullYear()} Northbridge University · Campus Saathi prototype with demo data</span>
+          <span>© {new Date().getFullYear()} Vindhya University · Campus Saathi prototype with demo data</span>
           <nav aria-label="Footer">
             <a href="#accessibility" onClick={(e) => e.preventDefault()}>Accessibility</a>
             <a href="#privacy" onClick={(e) => e.preventDefault()}>Privacy notice</a>
-            <a href="mailto:servicedesk@northbridge.ac.uk">IT Service Desk</a>
+            <a href="mailto:servicedesk@vindhya.ac.in">IT Service Desk</a>
           </nav>
         </div>
       </footer>

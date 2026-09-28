@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { AlertTriangle, ArrowLeft, ArrowRight, Check, Clock, Info, MapPin, Pencil, Phone, SearchX, Sparkles } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, Check, Clock, Info, MapPin, Pencil, Phone, SearchX, Sparkles, Ticket } from 'lucide-react';
 import { procedureById } from '../../data/procedures';
 import { useCases } from '../../data/CaseStore';
 import { departmentById, DEPARTMENTS } from '../../data/directory';
@@ -128,6 +128,20 @@ export default function FindSupport() {
   const urgent = !!match && (match.crisis || match.safety);
   const procedure = match?.procedureId ? procedureById(match.procedureId) : undefined;
 
+  const [joiningQueue, setJoiningQueue] = useState(false);
+  const joinQueue = (queueId: string, purpose: string) => {
+    setJoiningQueue(true);
+    api<{ token: { tokenNumber: string; position: number } }>(`/queues/${queueId}/join`, { body: { purpose } })
+      .then(({ token }) => {
+        notify(`You’re in the queue — token ${token.tokenNumber}`, `Position #${token.position} in line. We’ll keep it updated on Campus Queues.`);
+        navigate('/student/queues');
+      })
+      .catch((e) => {
+        setJoiningQueue(false);
+        notify('Couldn’t join the queue', errorMessage(e), 'error');
+      });
+  };
+
   const solvedIt = () => {
     notify('Glad that helped', 'If it happens again, you can come back here any time.');
     navigate('/student');
@@ -169,7 +183,7 @@ export default function FindSupport() {
             </form>
             <p className="small muted" style={{ marginTop: 16, display: 'flex', gap: 8 }}>
               <AlertTriangle size={15} style={{ marginTop: 2 }} />
-              <span>If you or someone else is in immediate danger, call <strong className="text-2">999</strong> or Campus Security on <strong className="text-2">01632 960 444</strong>.</span>
+              <span>If you or someone else is in immediate danger, call <strong className="text-2">112</strong> or Campus Security on <strong className="text-2">+91 80 4021 1212</strong>.</span>
             </p>
           </section>
         )}
@@ -201,7 +215,7 @@ export default function FindSupport() {
                 {match.safety && (
                   <div className="alert danger" style={{ marginTop: 20 }} role="alert">
                     <Phone size={16} />
-                    <span>If you’re in danger now, call <strong>999</strong>. Campus Security is available 24 hours on <strong>01632 960 444</strong>.</span>
+                    <span>If you’re in danger now, call <strong>112</strong>. Campus Security is available 24 hours on <strong>+91 80 4021 1212</strong>.</span>
                   </div>
                 )}
 
@@ -252,16 +266,26 @@ export default function FindSupport() {
                                 <div className="route-who">{st.who}</div>
                                 <div className="route-where"><MapPin size={13} /> {st.where}</div>
                                 <div className="route-what">{st.what}</div>
+                                {st.queueId && (
+                                  <button
+                                    type="button" className="btn btn-secondary btn-sm" style={{ marginTop: 8 }}
+                                    disabled={joiningQueue} onClick={() => joinQueue(st.queueId!, procedure.title)}
+                                  >
+                                    <Ticket size={14} /> {joiningQueue ? 'Joining…' : 'Join this counter’s queue'}
+                                  </button>
+                                )}
                               </div>
                             </li>
                           ))}
-                          <li className="route-done">
-                            <span className="route-num"><Check size={13} /></span>
-                            <div>
-                              <div className="route-who">Collect your NOC</div>
-                              <div className="route-what">Ready {procedure.turnaround} — the Placement Cell will email you.</div>
-                            </div>
-                          </li>
+                          {procedure.collect && (
+                            <li className="route-done">
+                              <span className="route-num"><Check size={13} /></span>
+                              <div>
+                                <div className="route-who">{procedure.collect.title}</div>
+                                <div className="route-what">Ready {procedure.turnaround} — {procedure.collect.note}</div>
+                              </div>
+                            </li>
+                          )}
                         </ol>
                         <div className="option-docs">
                           <div className="small" style={{ fontWeight: 600, marginBottom: 6 }}>Bring with you</div>

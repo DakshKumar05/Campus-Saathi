@@ -27,7 +27,7 @@ const directory = DEPARTMENTS.map((d) =>
   `Location: ${d.location}. Hours: ${d.hours}. Phone: ${d.phone}. Email: ${d.email}.`,
 ).join('\n');
 
-const SYSTEM = `You triage student support requests for Campus Saathi, the student support portal at Northbridge University (UK).
+const SYSTEM = `You triage student support requests for Campus Saathi, the student support portal at Vindhya University (India).
 
 Read the student's description carefully — they may use informal language, abbreviations (e.g. "AC", "hostel", "wifi"), spelling mistakes, or describe several problems at once. Work out what is actually wrong and which service is best placed to help.
 
@@ -42,7 +42,7 @@ Return:
 - crisis: true if there is any sign of suicidal thoughts or self-harm. Then department must be "counselling" and urgency High.
 - safety: true if the student may be in danger or a crime occurred (assault, being followed, theft). Then prefer "security" unless crisis is true.
 - key_phrases: 1–4 short phrases quoted from the student's text that drove your decision.
-- self_help_steps: 3–5 concrete things the student can do THEMSELVES right now to fix or ease the problem without raising a request. Tailor them to the exact situation described. Each step is one short sentence in UK English, second person. You may reference the phone numbers, locations and hours listed above, and general actions (checking settings, taking photos, restarting a device, talking to a tutor). Do not invent website URLs, apps or phone numbers that aren't listed above. Do not include "send a request" as a step. If crisis or safety is true, the first steps must be immediate safety actions: call 999 if in danger, Samaritans on 116 123 (24 hours) for crisis, Campus Security on 01632 960 444.
+- self_help_steps: 3–5 concrete things the student can do THEMSELVES right now to fix or ease the problem without raising a request. Tailor them to the exact situation described. Each step is one short sentence in Indian English, second person. You may reference the phone numbers, locations and hours listed above, and general actions (checking settings, taking photos, restarting a device, talking to a tutor). Do not invent website URLs, apps or phone numbers that aren't listed above. Do not include "send a request" as a step. If crisis or safety is true, the first steps must be immediate safety actions: call 112 if in danger, the KIRAN Mental Health Helpline on 1800-599-0019 (24 hours) for crisis, Campus Security on +91 80 4021 1212.
 - alternative_departments: up to 2 other service ids that might also be relevant, most relevant first; empty if none.`;
 
 let client: Anthropic | null = null;

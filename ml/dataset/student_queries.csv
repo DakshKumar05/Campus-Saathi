@@ -46,7 +46,7 @@ Q044,How do I submit extenuating circumstances?,advising,Academic Advising,Exten
 Q045,I want to change my course to data science,advising,Academic Advising,Extenuating circumstances,Low,standard
 Q046,I'm thinking about taking a year off my studies,advising,Academic Advising,Extenuating circumstances,Medium,hard
 Q047,When is the resit for the maths module I failed?,advising,Academic Advising,Extenuating circumstances,Medium,standard
-Q048,I need a council tax exemption letter,registry,Registry & Student Records,Letters and records,Low,standard
+Q048,I need a bank KYC address proof letter,registry,Registry & Student Records,Letters and records,Low,standard
 Q049,Can I get an official transcript for my job application?,registry,Registry & Student Records,Letters and records,Low,standard
 Q050,My enrolment still shows as incomplete,registry,Registry & Student Records,Letters and records,Medium,standard
 Q051,I lost my student ID card,registry,Registry & Student Records,Letters and records,Low,standard
@@ -112,7 +112,7 @@ Q110,I have a hearing impairment and can't follow recorded lectures,disability,D
 Q111,I have a chronic condition that affects my attendance,disability,Disability & Accessibility Services,Adjustments and access,Medium,standard
 Q112,I'm autistic and find the exam hall very overwhelming,disability,Disability & Accessibility Services,Adjustments and access,Medium,hard
 Q113,My visa expires before my course ends,international,International Student Office,Visa and immigration,High,standard
-Q114,I need a CAS letter for my visa extension,international,International Student Office,Visa and immigration,Medium,standard
+Q114,I need my FRRO registration certificate for my visa extension,international,International Student Office,Visa and immigration,Medium,standard
 Q115,I got an attendance warning email and I'm worried about my visa,international,International Student Office,Visa and immigration,High,standard
 Q116,Do I need a letter to travel home during the break?,international,International Student Office,Visa and immigration,Low,standard
 Q117,My eVisa shows the wrong details,international,International Student Office,Visa and immigration,Medium,standard
