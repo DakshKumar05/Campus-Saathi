@@ -20,8 +20,8 @@ export default function CaseDetail({ role }: { role: Extract<Role, 'staff' | 'ad
   const store = useCases();
   const notify = useToast();
   const c = store.getCase(id);
-  const listPath = role === 'admin' ? '/admin/cases' : '/staff';
-  const listLabel = role === 'admin' ? 'Cases' : 'My Assigned Cases';
+  const listPath = role === 'admin' ? '/admin/cases' : '/staff/cases';
+  const listLabel = 'Cases';
 
   const [status, setStatus] = useState<Status>('New');
   const [priority, setPriority] = useState<Priority>('Medium');
@@ -63,6 +63,8 @@ export default function CaseDetail({ role }: { role: Extract<Role, 'staff' | 'ad
 
   const student = studentById(c.studentId)!;
   const department = departmentById(c.departmentId)!;
+  const me = role === 'staff' ? staffById(user!.id) : undefined;
+  const readOnly = !!me && c.departmentId !== me.departmentId;
   const staff = staffById(c.assigneeId);
   const team = staffForDepartment(dept || c.departmentId);
   const resolved = c.status === 'Resolved';
@@ -143,15 +145,24 @@ export default function CaseDetail({ role }: { role: Extract<Role, 'staff' | 'ad
               <span className="ch-field"><span>Opened</span><strong>{relativeTime(c.createdAt)}</strong></span>
             </div>
           </div>
-          <div className="row">
-            {!resolved && c.assigneeId !== user!.id && role === 'staff' && (
-              <button className="btn btn-secondary" onClick={assignToMe} disabled={!!busy}>Assign to me</button>
-            )}
-            {resolved
-              ? <button className="btn btn-secondary" onClick={reopen} disabled={!!busy}><RotateCcw size={15} /> Reopen</button>
-              : <button className="btn btn-primary" onClick={() => setResolveOpen(true)}><CheckCircle2 size={16} /> Resolve</button>}
-          </div>
+          {!readOnly && (
+            <div className="row">
+              {!resolved && c.assigneeId !== user!.id && role === 'staff' && (
+                <button className="btn btn-secondary" onClick={assignToMe} disabled={!!busy}>Assign to me</button>
+              )}
+              {resolved
+                ? <button className="btn btn-secondary" onClick={reopen} disabled={!!busy}><RotateCcw size={15} /> Reopen</button>
+                : <button className="btn btn-primary" onClick={() => setResolveOpen(true)}><CheckCircle2 size={16} /> Resolve</button>}
+            </div>
+          )}
         </header>
+
+        {readOnly && (
+          <div className="alert info" role="status" style={{ marginBottom: 16 }}>
+            <Lock size={16} />
+            <span>View only — this request belongs to <strong>{department.team}</strong>. Only that team can reply, assign or resolve it.</span>
+          </div>
+        )}
 
         <div className="case-layout">
           <div className="stack">
@@ -245,7 +256,7 @@ export default function CaseDetail({ role }: { role: Extract<Role, 'staff' | 'ad
               <div className="panel-body">
                 <Timeline entries={c.activity} />
               </div>
-              {!resolved && (
+              {!resolved && !readOnly && (
                 <form className="composer" onSubmit={post}>
                   <div className="tabs" role="tablist">
                     <button type="button" role="tab" aria-selected={composer === 'response'} className={`tab${composer === 'response' ? ' active' : ''}`} onClick={() => { setComposer('response'); setComposerError(''); }}>
@@ -285,7 +296,7 @@ export default function CaseDetail({ role }: { role: Extract<Role, 'staff' | 'ad
                 ) : (
                   <div className="row" style={{ justifyContent: 'space-between' }}>
                     <span className="small muted">This case hasn’t been resolved yet.</span>
-                    <button className="btn btn-secondary btn-sm" onClick={() => setResolveOpen(true)}>Resolve case</button>
+                    {!readOnly && <button className="btn btn-secondary btn-sm" onClick={() => setResolveOpen(true)}>Resolve case</button>}
                   </div>
                 )}
               </div>
@@ -293,7 +304,7 @@ export default function CaseDetail({ role }: { role: Extract<Role, 'staff' | 'ad
           </div>
 
           <aside className="case-side">
-            <section className="panel">
+            {!readOnly && <section className="panel">
               <div className="panel-head"><h2>Update case</h2></div>
               <div className="panel-body">
                 <div className="field">
@@ -329,7 +340,7 @@ export default function CaseDetail({ role }: { role: Extract<Role, 'staff' | 'ad
                 <button className="btn btn-ghost btn-sm" disabled={!dirty} onClick={() => { setStatus(c.status); setPriority(c.priority); setAssignee(c.assigneeId ?? ''); setDept(c.departmentId); }}>Discard</button>
                 <button className="btn btn-primary btn-sm" disabled={!dirty || busy === 'save'} onClick={save}>{busy === 'save' ? <><span className="spinner" /> Saving…</> : 'Save changes'}</button>
               </div>
-            </section>
+            </section>}
 
             <section className="panel">
               <div className="panel-head"><h2>Service level</h2></div>

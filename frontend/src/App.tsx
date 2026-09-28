@@ -65,9 +65,10 @@ export default function App() {
               </Route>
 
               <Route path="/staff" element={<RequireRole role="staff"><AppShell role="staff" /></RequireRole>}>
-                <Route index element={<StaffCases scope="mine" />} />
-                <Route path="queue" element={<StaffCases scope="queue" />} />
-                <Route path="queues" element={<StaffQueues />} />
+                <Route index element={<StaffQueues />} />
+                <Route path="cases" element={<StaffCases />} />
+                <Route path="queue" element={<Navigate to="/staff/cases" replace />} />
+                <Route path="queues" element={<Navigate to="/staff" replace />} />
                 <Route path="cases/:id" element={<CaseDetail role="staff" />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="*" element={<NotFound />} />

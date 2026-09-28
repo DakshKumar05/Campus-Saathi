@@ -21,9 +21,8 @@ const NAV: Record<Role, NavItem[]> = {
     { to: '/student/services', label: 'Services' },
   ],
   staff: [
-    { to: '/staff', label: 'My Cases', end: true },
-    { to: '/staff/queue', label: 'Team Queue' },
-    { to: '/staff/queues', label: 'Service Queues' },
+    { to: '/staff', label: 'Service Queues', end: true },
+    { to: '/staff/cases', label: 'Cases' },
   ],
   admin: [
     { to: '/admin', label: 'Overview', end: true },
@@ -63,7 +62,7 @@ export function AppShell({ role }: { role: Role }) {
 
   const me = role === 'staff' ? staffById(user.id) : undefined;
   const teamQueueCount = me ? cases.filter((c) => c.departmentId === me.departmentId && !c.assigneeId && c.status !== 'Resolved').length : 0;
-  const badgeFor = (to: string) => (to === '/staff/queue' && teamQueueCount > 0 ? <span className="nav-badge">{teamQueueCount}</span> : null);
+  const badgeFor = (to: string) => (to === '/staff/cases' && teamQueueCount > 0 ? <span className="nav-badge">{teamQueueCount}</span> : null);
 
   const logout = () => {
     signOut().finally(() => navigate('/login', { replace: true, state: { signedOut: true } }));

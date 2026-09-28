@@ -19,11 +19,18 @@ interface CaseRow {
 interface ActivityRow { id: string; case_id: string; at: string; kind: ActivityEntry['kind']; actor: string; text: string; body: string | null; internal: number }
 
 
+// Staff can read every request; only their own department's cases are theirs to change (see assertCanWork).
 function scope(req: Request): { where: string; params: string[] } {
   const u = req.user!;
   if (u.role === 'student') return { where: 'c.student_id = ?', params: [u.id] };
-  if (u.role === 'staff') return { where: 'c.department_id = ?', params: [u.departmentId!] };
   return { where: '1 = 1', params: [] };
+}
+
+function assertCanWork(req: Request, c: Case) {
+  const u = req.user!;
+  if (u.role === 'staff' && c.departmentId !== u.departmentId) {
+    throw new HttpError(403, `This case belongs to ${teamName(c.departmentId) ?? 'another team'}. You can view it, but only that team can update it.`);
+  }
 }
 
 function toCase(row: CaseRow, activity: ActivityRow[], forStudent: boolean): Case {
@@ -144,6 +151,7 @@ casesRouter.post('/cases', requireRole('student'), handler((req, res) => {
 
 casesRouter.patch('/cases/:id', requireRole('staff', 'admin'), handler((req, res) => {
   const c = loadCase(req, req.params.id);
+  assertCanWork(req, c);
   const actor = req.user!.name;
   const body = req.body ?? {};
 
@@ -186,6 +194,7 @@ casesRouter.patch('/cases/:id', requireRole('staff', 'admin'), handler((req, res
 
 casesRouter.post('/cases/:id/messages', requireRole(), handler((req, res) => {
   const c = loadCase(req, req.params.id);
+  assertCanWork(req, c);
   const body = str(req.body?.body, 'Message', { min: 2, max: 5000 });
   const u = req.user!;
 
@@ -216,6 +225,7 @@ casesRouter.post('/cases/:id/messages', requireRole(), handler((req, res) => {
 
 casesRouter.post('/cases/:id/resolve', requireRole('staff', 'admin'), handler((req, res) => {
   const c = loadCase(req, req.params.id);
+  assertCanWork(req, c);
   if (c.status === 'Resolved') throw new HttpError(409, 'This case is already resolved.');
   const text = str(req.body?.text, 'Resolution summary', { min: 10, max: 2000 });
   const at = now();
@@ -228,6 +238,7 @@ casesRouter.post('/cases/:id/resolve', requireRole('staff', 'admin'), handler((r
 
 casesRouter.post('/cases/:id/reopen', requireRole('staff', 'admin'), handler((req, res) => {
   const c = loadCase(req, req.params.id);
+  assertCanWork(req, c);
   if (c.status !== 'Resolved') throw new HttpError(409, 'Only resolved cases can be reopened.');
   tx(() => {
     touch(c.id, { status: 'In Progress', resolution_at: null, resolution_by: null, resolution_text: null });
